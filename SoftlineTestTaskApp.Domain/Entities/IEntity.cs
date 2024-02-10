@@ -1,7 +1,7 @@
 ﻿namespace SoftlineTestTaskApp.Domain.Entities
 {
-    public class IEntity<TId> where TId : struct
+    public interface IEntity<TId> where TId : struct
     {
-        public TId Id { get; set; }
+        TId Id { get; set; }
     }
 }
