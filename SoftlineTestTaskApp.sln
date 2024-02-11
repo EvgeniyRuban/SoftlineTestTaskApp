@@ -5,11 +5,13 @@ VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftlineTestTaskApp", "SoftlineTestTaskApp\SoftlineTestTaskApp.csproj", "{5272BAD2-7D95-48AB-95D7-FC7D165331D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftlineTestTaskApp.Domain", "SoftlineTestTaskApp.Domain\SoftlineTestTaskApp.Domain.csproj", "{87EDE210-0311-4435-AC00-C6E9C292585C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftlineTestTaskApp.Domain", "SoftlineTestTaskApp.Domain\SoftlineTestTaskApp.Domain.csproj", "{87EDE210-0311-4435-AC00-C6E9C292585C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftlineTestTaskApp.DAL", "SoftlineTestTaskApp.DAL\SoftlineTestTaskApp.DAL.csproj", "{60940247-4A19-4C27-BCC1-310C249D5CFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftlineTestTaskApp.DAL", "SoftlineTestTaskApp.DAL\SoftlineTestTaskApp.DAL.csproj", "{60940247-4A19-4C27-BCC1-310C249D5CFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftlineTestTaskApp.Services", "SoftlineTestTaskApp.Services\SoftlineTestTaskApp.Services.csproj", "{27F2A1D9-9651-4A78-92BC-74B59BC6B41A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftlineTestTaskApp.Services", "SoftlineTestTaskApp.Services\SoftlineTestTaskApp.Services.csproj", "{27F2A1D9-9651-4A78-92BC-74B59BC6B41A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftlineTestTaskApp.API", "SoftlineTestTaskApp.API\SoftlineTestTaskApp.API.csproj", "{6C6B83CF-7EAC-4068-AC3E-4D2F73585277}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{27F2A1D9-9651-4A78-92BC-74B59BC6B41A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27F2A1D9-9651-4A78-92BC-74B59BC6B41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27F2A1D9-9651-4A78-92BC-74B59BC6B41A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C6B83CF-7EAC-4068-AC3E-4D2F73585277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6B83CF-7EAC-4068-AC3E-4D2F73585277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6B83CF-7EAC-4068-AC3E-4D2F73585277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6B83CF-7EAC-4068-AC3E-4D2F73585277}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
