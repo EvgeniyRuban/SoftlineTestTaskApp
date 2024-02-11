@@ -1,4 +1,4 @@
-﻿namespace SoftlineTestTaskApp.Domain.Dto.Status
+﻿namespace SoftlineTestTaskApp.Domain.Dto
 {
     public class StatusUpdateRequest
     {

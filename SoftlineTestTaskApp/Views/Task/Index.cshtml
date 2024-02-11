@@ -1,0 +1,44 @@
+﻿@using SoftlineTestTaskApp.Domain.Dto
+@model IReadOnlyCollection<TaskDto>
+@{
+    ViewData["Title"] = "Задачи";
+}
+
+
+<form method="post">
+    <table class="no-markdown">
+        <colgroup>
+            <col>
+            <col>
+            <col>
+            <col style="width: 50%">
+            <col>
+        </colgroup>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var task in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="checkbox"/>
+                    </td>
+                    <td>@task.Id</td>
+                    <td>@task.Name</td>
+                    <td>@task.Description</td>
+                    <td>@task.StatusId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button asp-controller="Task" asp-action="Create">Добавить</button>
+    <button>Отредактировать</button>
+    <button>Удалить</button>
+</form>

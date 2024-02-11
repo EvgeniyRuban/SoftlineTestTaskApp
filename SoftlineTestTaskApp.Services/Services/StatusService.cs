@@ -1,4 +1,4 @@
-﻿using SoftlineTestTaskApp.Domain.Dto.Status;
+﻿using SoftlineTestTaskApp.Domain.Dto;
 using SoftlineTestTaskApp.Domain.Entities;
 using SoftlineTestTaskApp.Domain.Repositories;
 using SoftlineTestTaskApp.Domain.Services;

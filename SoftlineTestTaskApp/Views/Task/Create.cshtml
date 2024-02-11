@@ -1,0 +1,22 @@
+﻿@using SoftlineTestTaskApp.Domain.Dto
+@model IReadOnlyCollection<StatusDto>
+@{
+    ViewData["Title"] = "Создание задачи";
+}
+
+<form>
+    <div>
+        <div>Название</div>
+        <input type="text" />
+        <div>Описание</div>
+        <textarea></textarea>
+        <div>Текущий статус</div>
+        <select id="statuses" name="statuses">
+            @foreach(var status in Model)
+            {
+                <option value="@status.Name">@status.Name</option>
+            }
+        </select>
+        <button asp asp-action="Index">Добавить</button>
+    </div>
+</form>
