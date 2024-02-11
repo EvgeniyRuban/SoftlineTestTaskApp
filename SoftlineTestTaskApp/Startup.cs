@@ -8,6 +8,8 @@ using SoftlineTestTaskApp.DAL;
 using SoftlineTestTaskApp.DAL.Repositories;
 using SoftlineTestTaskApp.Domain.Defenitions;
 using SoftlineTestTaskApp.Domain.Repositories;
+using SoftlineTestTaskApp.Domain.Services;
+using SoftlineTestTaskApp.Services.Services;
 
 namespace SoftlineTestTaskApp
 {
@@ -40,6 +42,8 @@ namespace SoftlineTestTaskApp
 
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IStatusRepository, StatusRepository>();
+            services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<IStatusService, StatusService>();
 
             #endregion
         }
