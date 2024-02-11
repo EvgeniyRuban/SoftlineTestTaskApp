@@ -26,13 +26,13 @@ namespace SoftlineTestTaskApp.Services.Services
 
             return await _statusRepository.Add(statusToCreate, cancellationToken);
         }
-        public async System.Threading.Tasks.Task Delete(StatusDeleteRequest statusDeleteRequest, CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task Delete(int id, CancellationToken cancellationToken = default)
         {
-            await _statusRepository.Delete(statusDeleteRequest.Id, cancellationToken);
+            await _statusRepository.Delete(id, cancellationToken);
         }
-        public async Task<StatusDto> Get(StatusGetRequest statusGetRequest, CancellationToken cancellationToken = default)
+        public async Task<StatusDto> Get(int id, CancellationToken cancellationToken = default)
         {
-            var status = await _statusRepository.Get(statusGetRequest.Id, cancellationToken);
+            var status = await _statusRepository.Get(id, cancellationToken);
 
             return new StatusDto
             {
