@@ -5,7 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SoftlineTestTaskApp.DAL;
+using SoftlineTestTaskApp.DAL.Repositories;
 using SoftlineTestTaskApp.Domain.Defenitions;
+using SoftlineTestTaskApp.Domain.Repositories;
 
 namespace SoftlineTestTaskApp
 {
@@ -31,6 +33,13 @@ namespace SoftlineTestTaskApp
             {
                 options.UseInMemoryDatabase(connectionString);
             });
+
+            #endregion
+
+            #region DI registration
+
+            services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IStatusRepository, StatusRepository>();
 
             #endregion
         }
