@@ -1,4 +1,4 @@
-﻿using SoftlineTestTaskApp.Domain.Dto.Status;
+﻿using SoftlineTestTaskApp.Domain.Dto;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

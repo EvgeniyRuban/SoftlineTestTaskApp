@@ -12,18 +12,16 @@ namespace SoftlineTestTaskApp.API.Controllers
     public class TaskController : ControllerBase
     {
         private readonly ITaskService _taskService;
-        private readonly IStatusService _statusService;
 
-        public TaskController(ITaskService taskService, IStatusService statusService)
+        public TaskController(ITaskService taskService)
         {
             _taskService = taskService;
-            _statusService = statusService;
         }
 
 
         [HttpGet("{id}")]
-        public async System.Threading.Tasks.Task<ActionResult<TaskDto>> Get([FromRoute] 
-        Guid id, CancellationToken 
+        public async System.Threading.Tasks.Task<ActionResult<TaskDto>> Get([FromRoute]
+        Guid id, CancellationToken
             cancellationToken)
         {
             return await _taskService.Get(id, cancellationToken);
@@ -38,7 +36,7 @@ namespace SoftlineTestTaskApp.API.Controllers
 
         [HttpPost]
         public async System.Threading.Tasks.Task<ActionResult<Guid>> Add(
-            [FromBody] TaskCreateRequest request, 
+            [FromBody] TaskCreateRequest request,
             CancellationToken cancellationToken)
         {
             return await _taskService.Add(request, cancellationToken);
@@ -46,16 +44,17 @@ namespace SoftlineTestTaskApp.API.Controllers
 
         [HttpPut]
         public async System.Threading.Tasks.Task<ActionResult> Update(
-            [FromBody] TaskUpdateRequest request, 
+            [FromBody] TaskUpdateRequest request,
             CancellationToken cancellationToken)
         {
             await _taskService.Update(request, cancellationToken);
             return Ok();
         }
 
+
         [HttpDelete("{id}")]
         public async System.Threading.Tasks.Task<ActionResult> Delete(
-            [FromRoute] Guid id, 
+            [FromRoute] Guid id,
             CancellationToken cancellationToken)
         {
             await _taskService.Delete(id, cancellationToken);

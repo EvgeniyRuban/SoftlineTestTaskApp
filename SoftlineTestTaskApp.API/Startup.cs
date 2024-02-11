@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using SoftlineTestTaskApp.DAL;
 using SoftlineTestTaskApp.DAL.Repositories;
 using SoftlineTestTaskApp.Domain.Defenitions;
@@ -24,8 +25,6 @@ namespace SoftlineTestTaskApp.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
             #region Database context configuring
 
             var sqlServerProvider = Configuration.GetValue<string>(ConfigDefinitions.SQLServerProvider);
@@ -46,18 +45,13 @@ namespace SoftlineTestTaskApp.API
             services.AddScoped<IStatusService, StatusService>();
 
             #endregion
+
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
