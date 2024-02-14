@@ -6,6 +6,6 @@
       "ASPNETCORE_ENVIRONMENT": "Development"
     },
     "launchBrowser": true,
-    "launchUrl": "task"
+    "launchUrl": "tasks"
   }
 }

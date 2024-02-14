@@ -9,11 +9,11 @@ namespace SoftlineTestTaskApp.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class TaskController : ControllerBase
+    public class TasksController : ControllerBase
     {
         private readonly ITaskService _taskService;
 
-        public TaskController(ITaskService taskService)
+        public TasksController(ITaskService taskService)
         {
             _taskService = taskService;
         }

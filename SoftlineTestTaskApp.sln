@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftlineTestTaskApp", "SoftlineTestTaskApp\SoftlineTestTaskApp.csproj", "{5272BAD2-7D95-48AB-95D7-FC7D165331D8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftlineTestTaskApp.Domain", "SoftlineTestTaskApp.Domain\SoftlineTestTaskApp.Domain.csproj", "{87EDE210-0311-4435-AC00-C6E9C292585C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftlineTestTaskApp.DAL", "SoftlineTestTaskApp.DAL\SoftlineTestTaskApp.DAL.csproj", "{60940247-4A19-4C27-BCC1-310C249D5CFD}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5272BAD2-7D95-48AB-95D7-FC7D165331D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5272BAD2-7D95-48AB-95D7-FC7D165331D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5272BAD2-7D95-48AB-95D7-FC7D165331D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5272BAD2-7D95-48AB-95D7-FC7D165331D8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{87EDE210-0311-4435-AC00-C6E9C292585C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{87EDE210-0311-4435-AC00-C6E9C292585C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87EDE210-0311-4435-AC00-C6E9C292585C}.Release|Any CPU.ActiveCfg = Release|Any CPU
