@@ -9,11 +9,11 @@ namespace SoftlineTestTaskApp.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class StatusController : ControllerBase
+    public class StatusesController : ControllerBase
     {
         private readonly IStatusService _statusService;
 
-        public StatusController(IStatusService statusService)
+        public StatusesController(IStatusService statusService)
         {
             _statusService = statusService;
         }
