@@ -1,4 +1,4 @@
-﻿namespace SoftlineTestTaskApp.Domain.Defenitions
+﻿namespace SoftlineTestTaskApp.Domain.Definitions
 {
     public static class ConfigDefinitions
     {

@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using SoftlineTestTaskApp.DAL;
 using SoftlineTestTaskApp.DAL.Repositories;
-using SoftlineTestTaskApp.Domain.Defenitions;
 using SoftlineTestTaskApp.Domain.Definitions;
 using SoftlineTestTaskApp.Domain.Repositories;
 using SoftlineTestTaskApp.Domain.Services;
@@ -46,11 +47,25 @@ namespace SoftlineTestTaskApp.API
 
             #endregion
 
+            #region Init swagger doc
             services.AddControllers();
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
+
+            #endregion
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

@@ -20,9 +20,9 @@ namespace SoftlineTestTaskApp.API.Controllers
 
 
         [HttpGet("{id}")]
-        public async System.Threading.Tasks.Task<ActionResult<TaskDto>> Get([FromRoute]
-        Guid id, CancellationToken
-            cancellationToken)
+        public async System.Threading.Tasks.Task<ActionResult<TaskDto>> Get(
+            [FromRoute] Guid id, 
+            CancellationToken cancellationToken)
         {
             return await _taskService.Get(id, cancellationToken);
         }
