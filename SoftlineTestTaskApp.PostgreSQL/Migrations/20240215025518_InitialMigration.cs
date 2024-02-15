@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace SoftlineTestTaskApp.DAL.Migrations
+namespace SoftlineTestTaskApp.PostgreSQL.Migrations
 {
-    public partial class Init : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +13,7 @@ namespace SoftlineTestTaskApp.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

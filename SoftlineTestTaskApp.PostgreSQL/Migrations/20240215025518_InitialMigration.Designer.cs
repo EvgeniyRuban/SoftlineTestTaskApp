@@ -2,28 +2,34 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SoftlineTestTaskApp.DAL;
 
-namespace SoftlineTestTaskApp.DAL.Migrations
+namespace SoftlineTestTaskApp.PostgreSQL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20240215025518_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.32");
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
+                .HasAnnotation("ProductVersion", "3.1.32")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("SoftlineTestTaskApp.Domain.Entities.Status", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -34,16 +40,16 @@ namespace SoftlineTestTaskApp.DAL.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Description")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.Property<int>("StatusId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
