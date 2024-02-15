@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SoftlineTestTaskApp.DAL;
 using SoftlineTestTaskApp.DAL.Repositories;
 using SoftlineTestTaskApp.Domain.Defenitions;
+using SoftlineTestTaskApp.Domain.Definitions;
 using SoftlineTestTaskApp.Domain.Repositories;
 using SoftlineTestTaskApp.Domain.Services;
 using SoftlineTestTaskApp.Services.Services;
@@ -27,10 +28,11 @@ namespace SoftlineTestTaskApp.API
 
             var sqlServerProvider = Configuration.GetValue<string>(ConfigDefinitions.SQLServerProvider);
             var connectionString = Configuration.GetConnectionString(sqlServerProvider);
+            var migrationAssembly = string.Concat(ApplicationConstants.AssemblyCommonName, '.', sqlServerProvider);
 
             services.AddDbContext<ApplicationContext>(options =>
             {
-                options.UseInMemoryDatabase(connectionString);
+                options.UseNpgsql(connectionString, o => o.MigrationsAssembly(migrationAssembly));
             });
 
             #endregion
