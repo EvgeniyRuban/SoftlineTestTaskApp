@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoftlineTestTaskApp.Domain.Entities;
+using SoftlineTestTaskApp.Domain.Exceptions;
 using SoftlineTestTaskApp.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,13 @@ namespace SoftlineTestTaskApp.DAL.Repositories
 
         public async System.Threading.Tasks.Task<Guid> Add(Task newTask, CancellationToken cancellationToken = default)
         {
+            var statusExists = await _context.Statuses.AnyAsync(s => s.Id == newTask.StatusId, cancellationToken);
+
+            if (!statusExists)
+            {
+                throw new EntityNotFoundException(typeof(Status), nameof(Status.Id));
+            }
+
             var result = await _context.Tasks.AddAsync(newTask, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 
@@ -40,6 +48,18 @@ namespace SoftlineTestTaskApp.DAL.Repositories
         public async System.Threading.Tasks.Task Update(Task updatedTask, CancellationToken cancellationToken = default)
         {
             var taskToUpdate = await _context.Tasks.FirstOrDefaultAsync(t => t.Id == updatedTask.Id, cancellationToken);
+
+            if(taskToUpdate == null)
+            {
+                throw new EntityNotFoundException(typeof(Task), nameof(Task.Id));
+            }
+
+            var statusExists = await _context.Statuses.AnyAsync(s => s.Id == updatedTask.StatusId, cancellationToken);
+
+            if (!statusExists)
+            {
+                throw new EntityNotFoundException(typeof(Status), nameof(Status.Id));
+            }
 
             taskToUpdate.StatusId = updatedTask.StatusId;
             taskToUpdate.Name = updatedTask.Name;

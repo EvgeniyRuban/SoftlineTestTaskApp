@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftlineTestTaskApp.Domain.Dto;
+using SoftlineTestTaskApp.Domain.Exceptions;
 using SoftlineTestTaskApp.Domain.Services;
 using System;
 using System.Collections.Generic;
@@ -24,14 +25,21 @@ namespace SoftlineTestTaskApp.API.Controllers
             [FromRoute] Guid id, 
             CancellationToken cancellationToken)
         {
-            return await _taskService.Get(id, cancellationToken);
+            try
+            {
+                return Ok(await _taskService.Get(id, cancellationToken));
+            }
+            catch(EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            
         }
 
         [HttpGet]
         public async System.Threading.Tasks.Task<ActionResult<List<TaskDto>>> GetAll(CancellationToken cancellationToken)
         {
-            var tasks = await _taskService.GetAll(cancellationToken);
-            return Ok(tasks);
+            return Ok(await _taskService.GetAll(cancellationToken));
         }
 
         [HttpPost]
@@ -39,7 +47,15 @@ namespace SoftlineTestTaskApp.API.Controllers
             [FromBody] TaskCreateRequest request,
             CancellationToken cancellationToken)
         {
-            return await _taskService.Add(request, cancellationToken);
+            try
+            {
+                var id = await _taskService.Add(request, cancellationToken);
+                return Ok(id);
+            }
+            catch(EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpPut]
@@ -47,8 +63,15 @@ namespace SoftlineTestTaskApp.API.Controllers
             [FromBody] TaskUpdateRequest request,
             CancellationToken cancellationToken)
         {
-            await _taskService.Update(request, cancellationToken);
-            return Ok();
+            try
+            {
+                await _taskService.Update(request, cancellationToken);
+                return NoContent();
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
 
@@ -57,8 +80,15 @@ namespace SoftlineTestTaskApp.API.Controllers
             [FromRoute] Guid id,
             CancellationToken cancellationToken)
         {
-            await _taskService.Delete(id, cancellationToken);
-            return Ok();
+            try
+            {
+                await _taskService.Delete(id, cancellationToken);
+                return NoContent();
+            }
+            catch(EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

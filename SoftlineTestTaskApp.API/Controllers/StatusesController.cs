@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoftlineTestTaskApp.Domain.Dto;
+using SoftlineTestTaskApp.Domain.Exceptions;
 using SoftlineTestTaskApp.Domain.Services;
 using System.Collections.Generic;
 using System.Threading;
@@ -23,7 +24,14 @@ namespace SoftlineTestTaskApp.API.Controllers
             [FromRoute] int id,
             CancellationToken cancellationToken)
         {
-            return await _statusService.Get(id, cancellationToken);
+            try
+            {
+                return Ok(await _statusService.Get(id, cancellationToken));
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpGet]
@@ -38,7 +46,14 @@ namespace SoftlineTestTaskApp.API.Controllers
             [FromBody] StatusCreateRequest request,
             CancellationToken cancellationToken)
         {
-            return await _statusService.Add(request, cancellationToken);
+            try
+            {
+                return Ok(await _statusService.Add(request, cancellationToken));
+            }
+            catch (EntityAlreadyExistsException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut]
@@ -46,8 +61,19 @@ namespace SoftlineTestTaskApp.API.Controllers
             [FromBody] StatusUpdateRequest request,
             CancellationToken cancellationToken)
         {
-            await _statusService.Update(request, cancellationToken);
-            return Ok();
+            try
+            {
+                await _statusService.Update(request, cancellationToken);
+                return NoContent();
+            }
+            catch(EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch(EntityAlreadyExistsException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
@@ -55,8 +81,15 @@ namespace SoftlineTestTaskApp.API.Controllers
             [FromRoute] int id,
             CancellationToken cancellationToken)
         {
-            await _statusService.Delete(id, cancellationToken);
-            return Ok();
+            try
+            {
+                await _statusService.Delete(id, cancellationToken);
+                return NoContent();
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }
