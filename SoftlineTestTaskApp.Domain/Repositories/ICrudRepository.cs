@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 namespace SoftlineTestTaskApp.Domain.Repositories
 {
     public interface ICrudRepository<TEntity, TKey>
+        where TEntity : class, IEntity<TKey>
         where TKey : struct
-        where TEntity : IEntity<TKey>
     {
         Task<TEntity> Get(TKey id, CancellationToken cancellationToken = default);
         Task<ICollection<TEntity>> GetAll(CancellationToken cancellationToken = default);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoftlineTestTaskApp.Domain.Entities;
+using SoftlineTestTaskApp.Domain.Exceptions;
 using SoftlineTestTaskApp.Domain.Repositories;
 using System.Collections.Generic;
 using System.Threading;
@@ -18,6 +19,13 @@ namespace SoftlineTestTaskApp.DAL.Repositories
 
         public async Task<int> Add(Status newStatus, CancellationToken cancellationToken = default)
         {
+            bool exists = await _context.Statuses.AnyAsync(s => s.Name == newStatus.Name, cancellationToken);
+
+            if (exists)
+            {
+                throw new EntityAlreadyExistsException(typeof(Status));
+            }
+
             var result = await _context.Statuses.AddAsync(newStatus, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 
@@ -39,6 +47,16 @@ namespace SoftlineTestTaskApp.DAL.Repositories
         }
         public async System.Threading.Tasks.Task Update(Status updatedStatus, CancellationToken cancellationToken = default)
         {
+
+            bool newStatusNameIsUsed = await _context.Statuses.AnyAsync(s => 
+            s.Id != updatedStatus.Id && 
+            s.Name == updatedStatus.Name, cancellationToken);
+
+            if (newStatusNameIsUsed)
+            {
+                throw new EntityAlreadyExistsException(typeof(Status), nameof(Status.Name));
+            }
+
             var statusToUpdate = await _context.Statuses.FirstOrDefaultAsync(s => s.Id == updatedStatus.Id, cancellationToken);
 
             statusToUpdate.Name = updatedStatus.Name;

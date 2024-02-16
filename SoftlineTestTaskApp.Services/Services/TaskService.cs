@@ -1,5 +1,6 @@
 ﻿using SoftlineTestTaskApp.Domain.Dto;
 using SoftlineTestTaskApp.Domain.Entities;
+using SoftlineTestTaskApp.Domain.Exceptions;
 using SoftlineTestTaskApp.Domain.Repositories;
 using SoftlineTestTaskApp.Domain.Services;
 using System;
@@ -30,11 +31,23 @@ namespace SoftlineTestTaskApp.Services.Services
         }
         public async System.Threading.Tasks.Task Delete(Guid id, CancellationToken cancellationToken = default)
         {
+            var taskToDelete = await _taskRepository.Get(id, cancellationToken);
+
+            if(taskToDelete == null)
+            {
+                throw new EntityNotFoundException(typeof(Task), nameof(Task.Id));
+            }
+
             await _taskRepository.Delete(id, cancellationToken);
         }
         public async System.Threading.Tasks.Task<TaskDto> Get(Guid id, CancellationToken cancellationToken = default)
         {
             var task = await _taskRepository.Get(id, cancellationToken);
+
+            if(task == null)
+            {
+                throw new EntityNotFoundException(typeof(Task), nameof(Task.Id));
+            }
 
             return new TaskDto
             {
