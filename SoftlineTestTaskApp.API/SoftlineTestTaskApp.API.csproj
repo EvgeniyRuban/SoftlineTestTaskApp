@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject>SoftlineTestTaskApp.API.Program</StartupObject>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.32">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SoftlineTestTaskApp.DAL\SoftlineTestTaskApp.DAL.csproj" />
+    <ProjectReference Include="..\SoftlineTestTaskApp.Domain\SoftlineTestTaskApp.Domain.csproj" />
+    <ProjectReference Include="..\SoftlineTestTaskApp.PostgreSQL\SoftlineTestTaskApp.PostgreSQL.csproj" />
+    <ProjectReference Include="..\SoftlineTestTaskApp.Services\SoftlineTestTaskApp.Services.csproj" />
+  </ItemGroup>
+
+
+</Project>

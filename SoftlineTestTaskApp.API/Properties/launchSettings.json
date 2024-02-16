@@ -1,0 +1,22 @@
+﻿{
+  "profiles": {
+    "SoftlineTestTaskApp.API": {
+      "applicationUrl": "http://localhost:5000/",
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "launchBrowser": true,
+      "launchUrl": "tasks"
+    },
+    "Swagger": {
+      "applicationUrl": "http://localhost:5000/",
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "launchBrowser": true,
+      "launchUrl": "swagger"
+    }
+  }
+}
